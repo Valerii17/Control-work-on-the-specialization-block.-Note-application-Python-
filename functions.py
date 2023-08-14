@@ -21,7 +21,7 @@ def print_note(note):
     print("Тело заметки:", note["body"])
     print("Дата/время создания:", note["created_at"])
     print("Дата/время последнего изменения:", note["updated_at"])
-def add_note():
+def add_note(notes):
     title = input("Введите заголовок заметки: ")
     body = input("Введите тело заметки: ")
     created_at = datetime.datetime.now().isoformat()
@@ -37,7 +37,7 @@ def add_note():
     save_notes(notes)
     print("Заметка успешно сохранена")
 
-def edit_note():
+def edit_note(notes):
     note_id = int(input("Введите ID заметки для редактирования: "))
     for note in notes:
         if note["id"] == note_id:
@@ -51,7 +51,7 @@ def edit_note():
             return
     print("Заметка с указанным ID не найдена")
 
-def delete_note():
+def delete_note(notes):
     note_id = int(input("Введите ID заметки для удаления: "))
     for note in notes:
         if note["id"] == note_id:
@@ -65,7 +65,7 @@ def delete_note():
             return
     print("Заметка с указанным ID не найдена")
 
-def filter_notes_by_date():
+def filter_notes_by_date(notes):
     date_str = input("Введите дату в формате ГГГГ-ММ-ДД: ")
     try:
         date = datetime.datetime.strptime(date_str, "%Y-%m-%d").date()
@@ -80,7 +80,7 @@ def filter_notes_by_date():
         for note in filtered_notes:
             print_note(note)
 
-def print_all_notes():
+def print_all_notes(notes):
     if len(notes) == 0:
         print("Список заметок пуст")
     else:
